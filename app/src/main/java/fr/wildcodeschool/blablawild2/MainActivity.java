@@ -44,30 +44,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // accès à la base de données Firebase
-        database = FirebaseDatabase.getInstance();
-        // sélection de la référence "message"
-        itineraryRef = database.getReference("trips");
-        // lecture des données à la référence "itinerary" une seule fois
-        itineraryRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // récupère la données contenue et la convertie en ItineraryModel
-                ItineraryModel itinerary = dataSnapshot.getValue(ItineraryModel.class);
-                // affiche le conducteur de l'itineraire
-                Toast.makeText(MainActivity.this, itinerary.getDriver(), Toast.LENGTH_LONG).show();
-            }
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // en cas d'erreur de récupération de la données
-                Toast.makeText(MainActivity.this, "Failed to read value.", Toast.LENGTH_LONG).show();
-            }
-        });
-
-
-
-
-
         Button bAddItinerary = findViewById(R.id.b_add_itinerary);
         bAddItinerary.setOnClickListener(new View.OnClickListener() {
             @Override

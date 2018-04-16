@@ -71,29 +71,6 @@ public class ItineraryCreateActivity extends AppCompatActivity {
                     // sauvegarde la valeur
                     itineraryRef.child(key).setValue(itineraryModel);
 
-
-                    //TRIPS
-                    database = FirebaseDatabase.getInstance();
-                    itineraryRef = database.getReference("trips");
-                    String key2 = itineraryRef.push().getKey();
-                    itineraryRef.child(key2).setValue(itineraryModel);
-                    // lecture en cas de modification de la valeur
-                    itineraryRef.child(key2).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            Intent intent = new Intent(ItineraryCreateActivity.this, MainActivity.class);
-                            startActivity(intent);
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError error) {
-                            // en cas d'erreur de récupération de la données
-                            Toast.makeText(ItineraryCreateActivity.this, "Failed to read value.", Toast.LENGTH_LONG).show();
-                        }
-                    });
-                    // sauvegarde la valeur
-                    itineraryRef.child(key2).setValue(itineraryModel);
-
-
                 }
             }
         });
