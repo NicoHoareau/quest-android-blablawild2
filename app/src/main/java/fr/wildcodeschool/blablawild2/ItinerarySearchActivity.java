@@ -42,9 +42,7 @@ public class ItinerarySearchActivity extends AppCompatActivity {
 
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference itineraryRef = database.getReference("trips");
-                    itineraryRef.setValue(tripModel);
-
-
+                    itineraryRef.push().setValue(tripModel);
 
                     intent.putExtra(EXTRA_TRIP, tripModel);
                     startActivity(intent);
